@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Products Page </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="script.js"></script>
+<body>
+    <section class="header">
+        <div class="text-box">
+            <h1>Welcome to our E-commerce store</h1>
+            <p> Expolre a variety of appliances available in our store.from air conditioner to water heater, we have it all</p>
+            <!--Add more information or promotion content as needed-->
+        </div>
+    </section>
+    <section class="items">
+        <h4>Items available in our store</h4>
+        <div class="food-container">
+            <!--Add this block for each item-->
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="refrigratror.jpeg" alt="">
+                <h5>Refrigertor</h5>
+                <p>5 star appliance</p>
+                <span class="price">₹50,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="smartwatch.jpg" alt="">
+                <h5>smart watch</h5>
+                <p>Durable</p>
+                <span class="price">₹2,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="air conditioner.jpeg" alt="">
+                <h5>Air conditioner</h5>
+                <p>Most fomous</p>
+                <span class="price">₹25,500</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="water heater.jpeg" alt="">
+                <h5>Water heater</h5>
+                <p>fast and Durable</p>
+                <span class="price">₹8,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="iron box.jpeg" alt="">
+                <h5>Iron box</h5>
+                <p>fast and Durable</p>
+                <span class="price">₹1000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="stove.jpeg" alt="">
+                <h5>stove</h5>
+                <p>fast and useful</p>
+                <span class="price">₹2000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="table fan.jpeg" alt="">
+                <h5>table fan</h5>
+                <p>Durable</p>
+                <span class="price">₹5,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="mixer.jpeg" alt="">
+                <h5>mixer</h5>
+                <p>Durable</p>
+                <span class="price">₹500</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="smartwatch.jpg" alt="">
+                <h5>smart watch</h5>
+                <p>Durable</p>
+                <span class="price">₹1000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="washing machine.jpeg" alt="">
+                <h5>washing machine</h5>
+                <p>Durable</p>
+                <span class="price">₹5,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="led tv.jpeg" alt="">
+                <h5>Led Tv</h5>
+                <p>Delicious criossant</p>
+                <span class="price">₹25,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <div class="fooditem" data-id="1" data name="croissant" data-price="50">
+                <img src="watch2.jpeg" alt="">
+                <h5>watch</h5>
+                <p>stylish</p>
+                <span class="price">₹2,000</span>
+                <button class="add-to-cart"> Add to cart</button>
+            </div>
+            <!--Repeat the above for each item in the food container-->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <section class="cart">
+        <h1> shopping cart</h4>
+        <ul id="cart items"></ul>
+        <p>Total: <span id="cart-total">₹0.00</span></p>
+        <button id="view-cart">view cart</button>
+    </section>
+
+    <script>
+        document.addEventlistener("DOMcontentloaded", function () {
+            const addToCartButtons = document.queryselectorAll(".add-to-cart");
+            const cartItemsList = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            
+            let cart = [];
+
+            addToCartButtons.forEach(button=>{
+                button.addEventListner("click",addtocart);
+
+            });
+            
+            function addToCart(event){
+                const button = event.target;
+                const item = button.parentnode;
+                const itemId = item.getAttribute("data-id");
+                const itemName = item.getAttribute("data-name");
+                const itemPrice = parseFloat(item.getAttribute("data-price"));
+                
+                const cartitem ={id: itemid, name:itemname, price: itemprice };
+                cart.push(cartItem);
+
+                updatecart();
+            }
+
+            function updatecart() {
+                cartItemsList.innerHTML= "";
+                let total = 0;
+
+                cart.forEach(item => {
+                    const li = document.createElement("li");
+                    li.textContent = $(item.name) - $(item.price.toFixed(2));
+                    cartItemsList.appendChild(li);
+                    total += item.price;
+                });
+                
+                cartTotal.textContent = $(total.tofixed(2));
+            }
+
+            // Add functionality to view cart button if needed
+            const viewcartButton = document.getElementById("view-cart");
+            if (viewCartButton){
+                viewCartButton.addEventListener("click", function() {
+                    // Implement your logic to show/hide the cart or navigate to a cart page
+                });
+            }
+        });
+    </script>
+</body>
+</html>
